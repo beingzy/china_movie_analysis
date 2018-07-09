@@ -52,7 +52,7 @@ def annual_data_parser(year):
     resp = requests.request(method='GET', url=the_url)
     resp.raise_for_status()
 
-    soup = BeautifulSoup(resp.content.decode())
+    soup = BeautifulSoup(resp.content.decode(), "lxml")
     html_rows = soup.select("tr")
 
     header, body = None, []
@@ -85,4 +85,3 @@ if __name__ == "__main__":
             print(msg)
 
         time.sleep(30)
-
