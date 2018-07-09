@@ -49,7 +49,7 @@ def annual_data_parser(year):
        html_page
     """
     the_url = get_officebox_url(year)
-    resp = requests.request(method='POST', url=the_url)
+    resp = requests.request(method='GET', url=the_url)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.content.decode())
