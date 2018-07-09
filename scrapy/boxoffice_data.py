@@ -49,7 +49,8 @@ def annual_data_parser(year):
        html_page
     """
     the_url = get_officebox_url(year)
-    resp = requests.request(method='GET', url=the_url)
+    fake_agent = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    resp = requests.get(the_url, fake_agent)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.content.decode(), "lxml")
@@ -68,7 +69,7 @@ def annual_data_parser(year):
 
 DATA_DIR = os.path.join(os.getcwd(), "data")
 if __name__ == "__main__":
-    for year in range(1994, 2018, 1):
+    for year in range(2016, 2018, 1):
 
         print("parsing data for year: {}".format(year))
 
@@ -84,4 +85,4 @@ if __name__ == "__main__":
             msg = "could not find page for {}".format(year)
             print(msg)
 
-        time.sleep(30)
+        time.sleep(5)
